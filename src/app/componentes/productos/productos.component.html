@@ -1,0 +1,77 @@
+<app-navbar></app-navbar>
+<div class="container mt-5">
+    <div class="jumbotron">
+        <form (ngSubmit)="registrar(forma)" #forma="ngForm">
+            <h1>Registro de productos</h1>
+            <hr>
+            <div class="input-group-prepend">
+                <span class="input-group-text col-1">Nombre</span>
+                <input type="text" class="form-control" name="nombre" [(ngModel)]="productos.nombre" required />
+            </div><br>
+            <div class="input-group-prepend">
+                <span class="input-group-text col-1">Categoria</span>
+                <input type="text" class="form-control" name="categoria" [(ngModel)]="productos.categoria" required/>
+            </div><br>
+            <div class="input-group-prepend">
+                <span class="input-group-text col-1">Precio</span>
+                <input type="number" class="form-control" name="precioUni" [(ngModel)]="productos.precioUni" />
+            </div><br>
+            <div class="input-group-prepend">
+                <span class="input-group-text col-1">Usuario</span>
+                <input type="text" class="form-control" name="usuario" [(ngModel)]="productos.usuario" required/>
+            </div> <br>
+            <button type="submit" class="btn btn-block btn-outline-dark">Registrar</button>
+        </form>
+    </div>
+
+    <div class="jumbotron">
+        <h1>Cambio de productos</h1>
+        <hr>
+        <div class="input-group-prepend">
+            <span class="input-group-text col-1">ID</span>
+            <input type="text" class="form-control" />
+        </div><br>
+        <div class="input-group-prepend">
+            <span class="input-group-text col-1">Nombre</span>
+            <input type="text" class="form-control" />
+        </div><br>
+        <div class="input-group-prepend">
+            <span class="input-group-text col-1">Categoria</span>
+            <input type="text" class="form-control" />
+        </div><br>
+        <div class="input-group-prepend">
+            <span class="input-group-text col-1">Precio</span>
+            <input type="number" class="form-control" />
+        </div><br>
+        <button type="submit" class="btn btn-block btn-outline-dark">Actualizar</button>
+    </div>
+
+    <table class="table col-xs-12">
+        <thead class="bg-light">
+            <tr style="color: rgb(3, 3, 3);">
+                <th scope="col">ID</th>
+                <th scope="col">Disponibilidad</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Categoria</th>
+                <th scope="col">Precio</th>
+                <th scope="col">Usuario</th>
+                <th scope="col">Acciones</th>
+            </tr>
+        </thead>
+        <tbody class="table-secondary">
+            <tr *ngFor="let tab of tabla; let i = index">
+                <th scope="row">{{tab._id}}</th>
+                <td>{{tab.disponible}}</td>
+                <td>{{tab.nombre}}</td>
+                <td>{{tab.categoria}}</td>
+                <td>{{tab.precioUni}}</td>
+                <td>{{tab.usuario}}</td>
+                <td>
+                    <button class="btn btn-outline-warning">Actualizar</button>
+                    <td><button class="btn btn-danger ml-3" (click)="elimiar(tab._id)">Eliminar</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<router-outlet></router-outlet>

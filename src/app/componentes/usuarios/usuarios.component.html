@@ -1,0 +1,79 @@
+<app-navbar></app-navbar>
+<div class="container mt-5 ">
+    <div class="jumbotron">
+        <form (ngSubmit)="registrar(forma)" #forma="ngForm">
+            <h1>Registro de usuarios</h1>
+            <hr>
+            <div class="input-group-prepend">
+                <span class="input-group-text col-2">Nombre(s)</span>
+                <input type="text" class="form-control" name="nombre" [(ngModel)]="usuario.nombre" required />
+            </div><br>
+            <div class="input-group-prepend">
+                <span class="input-group-text col-2">Apellido(s)</span>
+                <input type="text" class="form-control" name="apellido" [(ngModel)]="usuario.apellido" required />
+            </div><br>
+            <div class="input-group-prepend">
+                <span class="input-group-text col-2">e-mail</span>
+                <input type="email" class="form-control" name="email" [(ngModel)]="usuario.email" required />
+            </div><br>
+            <div class="input-group-prepend">
+                <span class="input-group-text col-2">Password</span>
+                <input type="password" class="form-control" name="password" [(ngModel)]="usuario.password" required />
+            </div><br>
+            <button type="submit" class="btn btn-block btn-outline-dark">Registrar</button>
+        </form>
+    </div>
+
+    <div class="jumbotron">
+        <h1>Actualizar usuario</h1>
+        <hr>
+        <form (ngSubmit)="actualizar(forma)" #forma="ngForm">
+            <div class="input-group-prepend">
+                <span class="input-group-text col-2">ID</span>
+                <input type="text" class="form-control invalid" name="nombre" required />
+            </div><br>
+            <div class="input-group-prepend">
+                <span class="input-group-text col-2">Nombre(s)</span>
+                <input type="text" class="form-control" name="nombre" required />
+            </div><br>
+            <div class="input-group-prepend">
+                <span class="input-group-text col-2">Apellido(s)</span>
+                <input type="text" class="form-control" name="apellido" required />
+            </div><br>
+            <div class="input-group-prepend">
+                <span class="input-group-text col-2">e-mail</span>
+                <input type="email" class="form-control" required />
+            </div><br>
+            <button type="submit" class="btn btn-block btn-outline-dark" aria-invalid="false">Actualizar</button>
+        </form>
+    </div>
+
+    <table class="table">
+        <thead class="bg-light">
+            <tr style="color: rgb(5, 5, 5);">
+                <th scope="col">Numero</th>
+                <th scope="col">ID</th>
+                <th scope="col">Nombre(s)</th>
+                <th scope="col">e-mail</th>
+                <th scope="col">Estado</th>
+                <th scope="col">Acciones</th>
+            </tr>
+        </thead>
+        <tbody class="table-secondary">
+            <tr *ngFor="let tab of tabla; let i = index">
+                <th scope="row">{{i+1}}</th>
+                <td>{{tab._id}}</td>
+                <td>{{ tab.nombre | uppercase }}</td>
+                <td>{{tab.email}}</td>
+                <td>{{tab.estado}}</td>
+                <td>
+                    <button class="btn btn-success "  (click)="dispararActualizar(tab._id)">Actualizar</button>
+                    <button class="btn btn-danger ml-3" (click)="elimiar(tab._id)">Eliminar</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+
+<router-outlet></router-outlet>

@@ -120,5 +120,8 @@
       }
     }
   },
-  "defaultProject": "prueva"
+  "defaultProject": "prueva",
+  "cli": {
+    "analytics": false
+  }
 }
